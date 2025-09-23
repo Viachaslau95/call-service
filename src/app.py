@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from src.common.api.common import router as common_api_router
+from src.main.api.call import router as call_api_router
 from src.config import config
 
 
@@ -18,3 +19,4 @@ def create_app() -> FastAPI:
 
 def include_routers(*, app: FastAPI) -> None:
     app.include_router(common_api_router)
+    app.include_router(call_api_router)
