@@ -10,6 +10,33 @@ class Postgres(BaseSettings):
     port: int = 5445
     test_name: str = 'test'
 
+    @property
+    def base_uri(self) -> str:
+        return f'{self.user_host}/{self.name}'
+
+    @property
+    def user_host(self) -> str:
+        user_info = f'{self.username}:{self.password}'
+        host_info = f'{self.host}:{self.port}'
+        return f'{user_info}@{host_info}'
+
+    @property
+    def uri(self) -> str:
+        return f'postgresql+asyncpg://{self.base_uri}'
+
+    @property
+    def test_uri(self) -> str:
+        test_uri = f'{self.user_host}/{self.test_name}'
+        return f'postgresql+asyncpg://{test_uri}'
+
+    @property
+    def test_sync_uri(self) -> str:
+        test_uri = f'{self.user_host}/{self.test_name}'
+        return f'postgresql://{test_uri}'
+
+    @property
+    def sync_uri(self) -> str:
+        return f'postgresql://{self.base_uri}'
 
 class Config(BaseSettings):
     allowed_origins: list[str] = ['http://localhost:3000', 'http://127.0.0.1:3000']

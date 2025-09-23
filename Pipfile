@@ -12,6 +12,7 @@ pydantic = "*"
 pydantic-settings = "*"
 alembic = "*"
 python-multipart = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 pytest = "*"
