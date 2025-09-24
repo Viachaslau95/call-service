@@ -25,3 +25,8 @@ class CallDto(BaseDto):
     receiver: str
     started_at: datetime.datetime
     recording: RecordingDto | None = None
+
+
+class RecordingResponseDto(BaseDto):
+    id: int
+    filename: str

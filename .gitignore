@@ -31,3 +31,4 @@ volumes/
 .DS_Store
 .env
 tmp/
+recordings

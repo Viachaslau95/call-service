@@ -38,6 +38,16 @@ class Postgres(BaseSettings):
     def sync_uri(self) -> str:
         return f'postgresql://{self.base_uri}'
 
+
+class Celery(BaseSettings):
+    broker_url: str = 'redis://localhost:6379/0'
+    result_backend: str = 'redis://localhost:6379/0'
+    task_always_eager: bool = False  # для тестов можно True
+
+    model_config = SettingsConfigDict(env_prefix='celery_', env_file=ENV_FILE, extra='ignore')
+
+
+
 class Config(BaseSettings):
     allowed_origins: list[str] = ['http://localhost:3000', 'http://127.0.0.1:3000']
     debug: bool = True
@@ -48,6 +58,8 @@ class Config(BaseSettings):
     base_url: str = 'http://127.0.0.1:8880'
     backend_url: str = 'http://127.0.0.1:8000'
     postgres: Postgres = Postgres()
+    celery: Celery = Celery()
+    recordings_dir: str = './recordings'
 
     model_config = SettingsConfigDict(env_file=ENV_FILE, extra='ignore')
 
