@@ -32,9 +32,6 @@ extra_style:
 structure:
 	@pre-commit run package-structure --all-files
 
-validate-ci:
-	make -j$(N_JOBS) style extra_style structure
-
 migrations-check:
 	alembic upgrade head;
 	alembic downgrade -5;
@@ -59,4 +56,3 @@ migrations-check:
 	done
 
 POSTGRES_NAME ?= test
-

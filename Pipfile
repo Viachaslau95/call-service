@@ -19,6 +19,11 @@ pydub = "*"
 aiofiles = "*"
 audioop-lts = "*"
 pre-commit = "*"
+mypy = "*"
+mypy-baseline = "*"
+flake8 = "*"
+flake8-pyproject = "*"
+types-aiofiles = "*"
 
 [dev-packages]
 pytest = "*"

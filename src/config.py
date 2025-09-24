@@ -48,7 +48,6 @@ class Celery(BaseSettings):
 
 
 class Config(BaseSettings):
-    allowed_origins: list[str] = ['http://localhost:3000', 'http://127.0.0.1:3000']
     debug: bool = True
     api_port: int = 8880
     api_host: str = 'localhost'
