@@ -1,0 +1,45 @@
+[tool.ruff]
+extend-exclude = []
+line-length = 100
+indent-width = 4
+target-version = "py312"
+exclude = ["alembic"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D1", "D203", "D212", "COM812", "ISC001", "ANN101", "TD002", "TD003", "FIX002", "ANN401", "B008", "ANN102", "RUF012", "FBT001", "FBT002", "EM101", "EM102", "TRY003", "B904"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = true
+line-ending = "auto"
+
+[tool.ruff.lint.extend-per-file-ignores]
+"**/tests/*" = ["S101", "ANN", "S311", "PLR0913"]
+
+[tool.flake8]
+max-line-length = 100
+max-parameters-amount = 10
+use-class-attributes-order-strict-mode = true
+max-complexity = 8
+max-cognitive-complexity = 18
+max-adjustable-complexity = 8
+max-mccabe-complexity = 8
+max-function-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+show_error_codes = true
+disable_error_code = ["misc"]
+ignore_missing_imports = true
+exclude = ["alembic"]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"
+asyncio_mode = "auto"

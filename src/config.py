@@ -2,6 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ENV_FILE = '.env'
 
+
 class Postgres(BaseSettings):
     name: str = 'call-service-db'
     username: str = 'postgres'
@@ -42,10 +43,8 @@ class Postgres(BaseSettings):
 class Celery(BaseSettings):
     broker_url: str = 'redis://localhost:6379/0'
     result_backend: str = 'redis://localhost:6379/0'
-    task_always_eager: bool = False  # для тестов можно True
-
+    task_always_eager: bool = False
     model_config = SettingsConfigDict(env_prefix='celery_', env_file=ENV_FILE, extra='ignore')
-
 
 
 class Config(BaseSettings):
