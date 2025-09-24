@@ -1,0 +1,59 @@
+---
+default_stages:
+  - pre-commit
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: trailing-whitespace
+        args:
+          - --markdown-linebreak-ext=md
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/best-doctor/pre-commit-hooks
+    rev: v1.0.11
+    hooks:
+      - id: expr-complexity
+      - id: test-naming
+      - id: line-count
+      - id: api-annotated
+        language_version: '3.13'
+      - id: old-style-annotations
+      - id: package-structure
+      - id: check-gitleaks
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-mock-methods
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.7
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.1
+    hooks:
+    -   id: absolufy-imports
+
+  - repo: local
+    hooks:
+      - id: style
+        name: style
+        entry: flake8
+        language: system
+        exclude: ^alembic/
+        types:
+          - python
+      - id: mypy
+        name: mypy
+        entry: make types
+        language: system
+        types:
+          - python

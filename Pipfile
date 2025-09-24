@@ -18,6 +18,7 @@ redis = "*"
 pydub = "*"
 aiofiles = "*"
 audioop-lts = "*"
+pre-commit = "*"
 
 [dev-packages]
 pytest = "*"
