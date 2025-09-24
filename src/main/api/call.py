@@ -21,15 +21,11 @@ async def call_create(
 
 
 @router.get('/{call_id}', status_code=status.HTTP_200_OK)
-async def get_call(
+async def call_retrieve(
     call_id: int, uow: AbstractUnitOfWork = Depends(UnitOfWork.dependency)
 ) -> CallDto:
     call = await call__by_id(uow=uow, call_id=call_id)
     return CallDto.model_validate(call)
-
-
-ALLOWED_EXT = {'.mp3', '.wav', '.m4a', '.flac'}
-MAX_FILE_SIZE = 100 * 1024 * 1024
 
 
 @router.post('/{call_id}/recording/', status_code=status.HTTP_201_CREATED)
